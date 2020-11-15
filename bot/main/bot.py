@@ -37,7 +37,7 @@ class Ready(object):
         return all([getattr(self, cog) for cog in COGS])
 
 
-class MusicBot(commands.Bot):
+class AngmarBot(commands.Bot):
     def __init__(self):
         self._cogs = [p.stem for p in Path(".").glob("./bot/cogs/*.py")]
         self.scheduler = AsyncIOScheduler()
