@@ -1,13 +1,12 @@
 from bot.main import MusicBot
 
-import discord
-from discord.ext import commands
+VERSION = "0.7.3"
 
 
 def main(): 
     bot = MusicBot()
 
-    bot.run()
+    bot.run(VERSION)
 
 
 if __name__ == "__main__":
