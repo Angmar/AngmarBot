@@ -1,4 +1,4 @@
-from bot.main import MusicBot
+from bot.main import AngmarBot
 
 VERSION = "0.7.3"
 
