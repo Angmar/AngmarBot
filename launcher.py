@@ -4,9 +4,9 @@ VERSION = "0.7.3"
 
 
 def main(): 
-    bot = MusicBot()
+    bot = AngmarBot()
 
-    bot.run(VERSION)
+    AngmarBot.run()
 
 
 if __name__ == "__main__":
