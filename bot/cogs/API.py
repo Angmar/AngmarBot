@@ -5,10 +5,7 @@ from discord import Member, Embed
 from discord.ext.commands import Cog, BucketType
 from discord.ext.commands import BadArgument
 from discord.ext.commands import command, cooldown
-from memelib.api import DankMemeClient
 
-# myclient = DankMemeClient
-# await myclient.meme(subreddit ="dankmemes")
 
 class Api(commands.Cog):
     def __init__(self, bot):
