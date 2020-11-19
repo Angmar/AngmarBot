@@ -4,6 +4,7 @@ from bot.main import AngmarBot
 def main(): 
     bot = AngmarBot()
 
+
     AngmarBot.run()
 
 
