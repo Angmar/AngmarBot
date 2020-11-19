@@ -1,14 +1,13 @@
-from bot.main import MusicBot
-
-import discord
-from discord.ext import commands
+from bot.main import AngmarBot
 
 
 def main(): 
-    bot = MusicBot()
-
+    bot = AngmarBot()
+    
     bot.run()
-
+    
 
 if __name__ == "__main__":
     main()
+
+
