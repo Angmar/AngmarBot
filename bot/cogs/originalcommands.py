@@ -28,6 +28,7 @@ class OGCommands(Cog):
     async def deleted(self, ctx):
         await ctx.send("https://gfycat.com/magnificenthiddenafricanpiedkingfisher")
 
+
     @command(brief="Original Commands")
     @cooldown(1, 20, BucketType.guild)
     async def Midnight(self, ctx):
@@ -82,7 +83,7 @@ class OGCommands(Cog):
     async def Soup(self, ctx):
         await ctx.send("https://cdn.discordapp.com/attachments/739057929642311712/788500402252808192/Screenshot_37.png")
 
-        
+
 
 def setup(bot):
     bot.add_cog(OGCommands(bot))
