@@ -393,6 +393,8 @@ class Info(Cog):
     
     @command(name="botinfo")
     async def show_bot_stats(self, ctx):
+
+
         embed = Embed(title="Bot Info",
                       color=ctx.author.color,
                       thumbnail=self.bot.user.avatar_url,
@@ -407,12 +409,12 @@ class Info(Cog):
             mem_usage = mem_total * (mem_of_total / 100)
             
         fields = [
-            ("Bot version", "0.7.3", True),
+            ("Bot version", "0.8.3", True),
             ("Python version", python_version(), True),
             ("discord.py version", discord_version, True),
             ("Uptime", uptime, True),
             ("CPU time", cpu_time, True),
-            ("Memory usage", f"{mem_usage:,.3f} MiB/ {mem_total:,.0f} MiB ({mem_of_total:.0f}%)", True),
+            ("Memory usage", f"{mem_usage:,.0f} MiB/ {mem_total:,.0f} MiB ({mem_of_total:.0f}%)", True),
             ]
             
         for name, value, inline in fields:

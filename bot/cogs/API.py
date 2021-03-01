@@ -6,7 +6,6 @@ from discord.ext.commands import Cog, BucketType
 from discord.ext.commands import BadArgument
 from discord.ext.commands import command, cooldown
 
-
 class Api(commands.Cog):
     def __init__(self, bot):
         self.bot = bot 
@@ -56,8 +55,7 @@ class Api(commands.Cog):
                     
                
                         
-            embed = Embed(title="Meme",
-                                      description=data["caption"],
+            embed = Embed(title=data["caption"],
                                       color=ctx.author.color)
             embed.set_image(url=image_link)
             await ctx.send(embed=embed)

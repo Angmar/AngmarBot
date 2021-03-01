@@ -26,9 +26,9 @@ def roll_hit(num_of_dice, dice_type, hit, modifier, threshold):
 					results += "**{}** ".format(y)
 					total += 1
 				else:
-					results += "+{} ".format(y)
+					results += "+{}".format(y)
 			else:
-				results += "{} ".format(y)
+				results += "+{}".format(y)
 				total += y
 		total += int(modifier)
 		if modifier != 0:
@@ -106,7 +106,7 @@ class gab(Cog):
 					hit = int(hit)
 			if (num_of_dice != 0):
 				if (is_num(num_of_dice) is False):
-					raise ValueError("Number of dice format error. Proper usage 3d6")
+					raise ValueError("Number of dice format error. Proper usage 3d6 and make sure if you are rolling one die you use 1d, for example 1d6")
 					
 				else:
 					num_of_dice = int(num_of_dice)
@@ -115,7 +115,7 @@ class gab(Cog):
 				
 			if (dice_type != 0):
 				if (is_num(dice_type) is False):
-					raise ValueError("Dice type format error. Proper usage 3d6")
+					raise ValueError("Dice type format error. Proper usage 3d6 and make sure if you are rolling one die you use 1d, for example 1d6 ")
 					
 				else:
 					dice_type = int(dice_type)
@@ -150,7 +150,7 @@ class gab(Cog):
 			if a != 0 and b != 0:
 				yield from ctx.send("{}-{}. Result: {}".format(a, b, roll_basic(a, b, modifier, threshold)))
 			else:
-				yield from ctx.send("{}d{} Rolled . Details: {}".format(num_of_dice, dice_type, roll_hit(num_of_dice, dice_type, hit, modifier, threshold)))
+				yield from ctx.send("{}d{} Rolled. Details: {}".format(num_of_dice, dice_type, roll_hit(num_of_dice, dice_type, hit, modifier, threshold)))
 	
 		except ValueError as err:
 			yield from ctx.send(err)

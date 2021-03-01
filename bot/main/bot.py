@@ -21,9 +21,8 @@ from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredA
 								  CommandOnCooldown)
 
 
-
 COGS = [p.stem for p in Path(".").glob("./bot/cogs/*.py")]
-
+OWNER_ID = 656994493463003136
 def get_prefix(bot, message):
         prefix= db.field("SELECT Prefix FROM guilds WHERE GuildID =?", message.guild.id)
         return commands.when_mentioned_or(prefix)(bot, message)
@@ -47,10 +46,18 @@ class AngmarBot(commands.Bot):
 
         super().__init__(command_prefix=get_prefix, 
                          case_insensitive=True, 
-                         intents = discord.Intents.all(),)
+                         intents = discord.Intents.all(),
+                         owner_id= OWNER_ID,)
 
     def update_db(self):
         db.multiexec("INSERT OR IGNORE INTO guilds (GuildID) VALUES (?)",
+                     ((guild.id,) for guild in self.guilds))
+
+
+        db.commit()
+    
+    def update_starboard(self):
+        db.multiexec("INSERT OR IGNORE INTO channels (GuildID) VALUES (?)",
                      ((guild.id,) for guild in self.guilds))
 
         db.commit()
@@ -114,6 +121,7 @@ class AngmarBot(commands.Bot):
                     self.stdout = self.get_channel(739057929642311712)
 
                     self.update_db()
+                    self.update_starboard()
 
 
 

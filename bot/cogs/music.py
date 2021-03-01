@@ -227,13 +227,13 @@ class Player(wavelink.Player):
         await self.play(self.queue.current_track)
 
 
-class Music(commands.Cog, wavelink.WavelinkMixin):
+class Music(Cog, wavelink.WavelinkMixin):
     def __init__(self, bot):
         self.bot = bot
         self.wavelink = wavelink.Client(bot=bot)
         self.bot.loop.create_task(self.start_nodes())
 
-    @commands.Cog.listener()
+    @Cog.listener()
     async def on_voice_state_update(self, member, before, after):
         if not member.bot and after.channel is None:
             if not [m for m in before.channel.members if not m.bot]:
@@ -282,8 +282,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(obj, discord.Guild):
             return self.wavelink.get_player(obj.id, cls=Player)
 
-    @commands.command(name="connect", aliases=["join"], brief="Music Commands")
-    async def connect_command(self, ctx, channel: t.Optional[discord.VoiceChannel],):
+    @command(name="connect", aliases=["join"], brief="Music Commands")
+    async def connect_command(self, ctx, *, channel: t.Optional[discord.VoiceChannel]):
         """Connects Bot to Voice Channel. If not working, type the name of the VC after the connect command."""
         player = self.get_player(ctx)
         channel = await player.connect(ctx, channel)
@@ -296,14 +296,14 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoVoiceChannel):
             await ctx.send("No suitable voice channel was provided.")
 
-    @commands.command(name="disconnect", aliases=["leave"], brief="Music Commands")
+    @command(name="disconnect", aliases=["leave"], brief="Music Commands")
     async def disconnect_command(self, ctx, cmd: Optional[str]):
         """Disconnects bot from Voice Channel. Bot will disconnect automatically once all members leave."""
         player = self.get_player(ctx)
         await player.teardown()
         await ctx.send("Disconnected from voice channel.")
 
-    @commands.command(name="play", brief="Music Commands")
+    @command(name="play", brief="Music Commands")
     async def play_command(self, ctx, *, query: t.Optional[str]):
         """Link a YouTube video or type in what song you want to play. 5 options will come up. React with an emoji to choose the song."""
         player = self.get_player(ctx)
@@ -351,7 +351,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
     @commands.command(name="stop", brief="Music Commands")
     async def stop_command(self, ctx, cmd: Optional[str]):
-        """Sops the song and clears the queue."""
+        """Stops the song and clears the queue."""
         player = self.get_player(ctx)
         player.queue.empty()
         await player.stop()
@@ -408,6 +408,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
     @commands.command(name="repeat", brief="Music Commands")
     async def repeat_command(self, ctx, mode: str):
+        """There are 3 different Repeat modes. use `.repeat none` to stop the repeat, `.repeat 1` to repeat the song currently playing, and `.repeat all` to repeat all songs in the queue"""
         if mode not in ("none", "1", "all"):
             raise InvalidRepeatMode
 
