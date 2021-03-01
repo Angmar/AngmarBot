@@ -11,10 +11,10 @@ class Channel(Cog):
     @command()
     async def Starboard(self, ctx):
         guild = ctx.message.guild
-        lc = await guild.create_text_channel("Starboard")
-        db.execute("UPDATE channels SET DefaultStarboardChannelID = ?, StarboardChannelID = ? WHERE GuildID =?", lc.id, lc.id, guild.id)
+        sb = await guild.create_text_channel("Starboard")
+        db.execute("UPDATE channels SET DefaultStarboardChannelID = ?, StarboardChannelID = ? WHERE GuildID =?", sb.id, sb.id, guild.id)
         
-        await ctx.send(f"Starboard Channel set to {lc.mention}")
+        await ctx.send(f"Starboard Channel set to {sb.mention}")
     
 def setup(bot):
     bot.add_cog(Channel(bot))
